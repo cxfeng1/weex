@@ -61,6 +61,8 @@ NSTimeInterval JSLibInitTime = 0;
         _moduleInstances = [NSMutableDictionary new];
         _styleConfigs = [NSMutableDictionary new];
         _attrConfigs = [NSMutableDictionary new];
+        
+        _userInfo = [NSMutableDictionary new];
        
         [self addObservers];
     }

@@ -47,6 +47,10 @@
         __weak typeof(self) weakSelf = self;
         
         NSDictionary *data = [WXUtility getEnvironment];
+        _jsContext[@"WXTick"] = ^(JSValue *name) {
+            [WXSDKEngine topInstance].userInfo[[name toString]] =  @(CACurrentMediaTime() * 1000);
+        };
+
         _jsContext[@"WXEnvironment"] = data;
         
         _jsContext[@"setTimeout"] = ^(JSValue *function, JSValue *timeout) {

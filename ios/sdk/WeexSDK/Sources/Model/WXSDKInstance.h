@@ -139,6 +139,7 @@ typedef NS_ENUM(NSInteger, WXErrorCode) {//error.code
  */
 @property (nonatomic, strong) NSMutableDictionary *userInfo;
 
+
 /**
  * Renders weex view with bundle url.
  *

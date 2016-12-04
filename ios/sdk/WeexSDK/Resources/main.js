@@ -4343,6 +4343,7 @@
           _fn(bundleDefine, bundleRequire, bundleDocument, bundleBootstrap, bundleRegister, bundleRender, bundleDefine, bundleBootstrap, bundleDocument, bundleRequireModule, bundleVm);
         }
 
+        WXTick("jsframework init");
         return result;
       }
       /* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
@@ -5848,6 +5849,8 @@
       }
       console.debug('[JS Framework] compile native component by', target);
       compileNativeComponent(vm, target, dest, type);
+      var tickName = 'compileFinish' + target.type;
+      WXTick(tickName);
     }
 
     /**
@@ -6060,9 +6063,14 @@
         // if its parent is documentElement then it's a body
         console.debug('[JS Framework] compile to create body for ' + type);
         element = (0, _domHelper.createBody)(vm, type);
+        WXTick('createBody');
       } else {
         console.debug('[JS Framework] compile to create element for ' + type);
         element = (0, _domHelper.createElement)(vm, type);
+        if (type == 'cell') {
+          var tickName = 'createCell' + element.ref;
+          WXTick(tickName);
+        }
       }
 
       if (!vm._rootEl) {
@@ -6081,7 +6089,10 @@
         }
       }
 
+
       (0, _directive.bindElement)(vm, element, template);
+
+
 
       if (template.attr && template.attr.append) {
         // backward, append prop in attr
@@ -6101,11 +6112,25 @@
         app.lastSignal = (0, _domHelper.attachTarget)(vm, element, dest);
       }
       if (app.lastSignal !== -1) {
+        if (type == 'cell') {
+          var tickName = 'beforecompileChildren' + element.ref;
+          WXTick(tickName);
+        }
         compileChildren(vm, template, element);
+        if (type == 'cell') {
+          var tickName = 'aftercompileChildren' + element.ref;
+          WXTick(tickName);
+        }
       }
       if (app.lastSignal !== -1 && treeMode) {
         console.debug('[JS Framework] compile to append whole tree for', element);
+        if (type == 'cell') {
+          var tickName = 'beforeAppendTree' + element.ref;
+          WXTick(tickName);
+        }
         app.lastSignal = (0, _domHelper.attachTarget)(vm, element, dest);
+        var tickName = 'appendTree' + element.ref;
+        WXTick(tickName);
       }
     }
 
@@ -8592,6 +8617,9 @@
           app.commonModules[_cleanName5] = definition;
         }
       }
+
+      var tickName = 'defineFinish:' + name;
+      WXTick(tickName);
     };
 
     /**

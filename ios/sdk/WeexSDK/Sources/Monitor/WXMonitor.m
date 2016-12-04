@@ -141,10 +141,18 @@ static WXThreadSafeMutableDictionary *globalPerformanceDict;
         commitDict[commitKey] = @([end integerValue] - [start integerValue]);
     }
     
+    
     id<WXAppMonitorProtocol> appMonitor = [WXHandlerFactory handlerForProtocol:@protocol(WXAppMonitorProtocol)];
     if (appMonitor && [appMonitor respondsToSelector:@selector(commitAppMonitorArgs:)]){
         [appMonitor commitAppMonitorArgs:commitDict];
     }
+    
+    if (instance.userInfo) {
+        for (NSString *name in instance.userInfo) {
+            commitDict[name] = @([instance.userInfo[name] integerValue]  - [instance.performanceDict[@(WXPTJSCreateInstance)][kStartKey] integerValue]);
+        }
+    }
+    
     
     [self printPerformance:commitDict];
 }
@@ -171,9 +179,28 @@ static WXThreadSafeMutableDictionary *globalPerformanceDict;
     }
     
     NSMutableString *performanceString = [NSMutableString stringWithString:@"Performance:"];
+    NSMutableArray *valueArray = [NSMutableArray new];
     for (NSString *commitKey in commitDict) {
-        [performanceString appendFormat:@"\n    %@: %@,", commitKey, commitDict[commitKey]];
+        [valueArray addObject:commitDict[commitKey]];
     }
+    
+    [valueArray sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        if ([obj1 integerValue] > [obj2 integerValue]) {
+            return NSOrderedDescending;
+        } else {
+            return NSOrderedAscending;
+        }
+    }];
+    
+    for (id value in valueArray) {
+        for (NSString *commitKey in commitDict) {
+            if (value == commitDict[commitKey]) {
+                [performanceString appendFormat:@"\n    %@: %@,", commitKey, commitDict[commitKey]];
+            }
+        }
+    }
+    
+    
     
     WXLog(@"%@", performanceString);
 }
