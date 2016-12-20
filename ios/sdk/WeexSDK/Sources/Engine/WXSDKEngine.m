@@ -131,6 +131,13 @@
     [WXHandlerFactory registerHandler:handler withProtocol:protocol];
 }
 
++ (id)handlerForProtocol:(Protocol *)protocol
+{
+    WXAssert(protocol, @"Fail to get the handler, please check if the parameters are correct ！");
+    
+    return  [WXHandlerFactory handlerForProtocol:protocol];
+}
+
 # pragma mark SDK Initialize
 
 + (void)initSDKEnvironment
@@ -239,7 +246,6 @@ static NSDictionary *_customEnvironment;
 + (void)connectDevToolServer:(NSString *)URL
 {
     [[WXSDKManager bridgeMgr] connectToDevToolWithUrl:[NSURL URLWithString:URL]];
-
 }
 
 + (void)_originalRegisterComponents:(NSDictionary *)components {
