@@ -89,6 +89,8 @@
             }
         }
         
+        _absolutePosition = CGPointMake(NAN, NAN);
+        
         [self _setupNavBarWithStyles:_styles attributes:_attributes];
         [self _initCSSNodeWithStyles:_styles];
         [self _initViewPropertyWithStyles:_styles];
