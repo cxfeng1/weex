@@ -18,15 +18,15 @@ markdown("## xxxxx")
 
 warn("Please add your name", file: "CHANGELOG.md", line: 4)
 
-
-simplecov.report('coverage/coverage.json')
-
-
 todoist.warn_for_todos
 todoist.print_todos_table
 
 xcode_summary.ignored_files = '**/Pods/**'
 xcode_summary.report 'xcodebuild.json'
+
+# Find reviewers without parsing blame information
+# from files matching to 'Pods/*'
+mention.run(2, ["Pods/*"], [])
 
 
 
