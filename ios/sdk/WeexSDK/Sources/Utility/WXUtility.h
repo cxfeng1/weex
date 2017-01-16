@@ -12,6 +12,7 @@
 #import "WXType.h"
 #import "WXLog.h"
 
+
 // The default screen width which helps us to caculate the real size or scale in different devices.
 static const CGFloat WXDefaultScreenWidth = 750.0;
 
