@@ -1,13 +1,29 @@
-# Sometimes it's a README fix, or something like that - which isn't relevant for
-# including in a project's CHANGELOG for example
-declared_trivial = github.pr_title.include? "#trivial"
-
-# Make it more obvious that a PR is a work in progress and shouldn't be merged yet
-warn("PR is classed as Work in Progress") if github.pr_title.include? "[WIP]"
-
 # Warn when there is a big PR
 warn("Big PR") if git.lines_of_code > 500
 
-# Don't let testing shortcuts get into master by accident
-fail("fdescribe left in tests") if `grep -r fdescribe specs/ `.length > 1
-fail("fit left in tests") if `grep -r fit specs/ `.length > 1
+# Look for prose issues
+prose.lint_files
+
+# Look for spelling issues
+prose.ignored_words = %w(CocoaPods OSS NPM MVC JS JSX GraphQL Redux lockfile ESLint linter ES6 ES2016 ECMA SemVer Mutablilty destructuring typings v8 transpilation plugin plugins olde HTML5 CSS3 CSS HTML async vscode dangerfile UIView MVVM FRP TLDR: TLDR DangerJS)
+prose.check_spellings
+
+message("Test Message")
+
+warn("You have not included a CHANGELOG entry.")
+
+fail("Our linter has failed.")
+
+markdown("## xxxxx")
+
+warn("Please add your name", file: "CHANGELOG.md", line: 4)
+
+
+simplecov.report('coverage/coverage.json')
+
+
+todoist.warn_for_todos
+todoist.print_todos_table
+
+xcode_summary.ignored_files = '**/Pods/**'
+xcode_summary.report 'xcodebuild.json'
