@@ -2,7 +2,6 @@
 source "https://rubygems.org"
 
 gem "danger"
-gem 'danger-prose', git: 'https://github.com/dbgrandi/danger-prose'
 gem "danger-todoist"
 gem "danger-xcode_summary"
 gem "danger-mention"
