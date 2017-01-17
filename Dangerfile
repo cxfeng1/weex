@@ -5,7 +5,7 @@ todoist.warn_for_todos
 todoist.print_todos_table
 
 xcode_summary.ignored_files = '**/Pods/**'
-xcode_summary.report 'xcodebuild.json'
+xcode_summary.report 'ios/sdk/xcodebuild.json'
 
 # Find reviewers without parsing blame information
 # from files matching to 'Pods/*'
