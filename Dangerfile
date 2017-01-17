@@ -19,7 +19,7 @@ xcode_summary.report 'xcodebuild.json'
 
 # Find reviewers without parsing blame information
 # from files matching to 'Pods/*'
-mention.run(2, ["Pods/*"], [])
+# mention.run(2, ["Pods/*"], [])
 
 
 

@@ -22,8 +22,6 @@ GEM
       kramdown (~> 1.5)
       octokit (~> 4.2)
       terminal-table (~> 1)
-    danger-mention (0.4.0)
-      danger
     danger-plugin-api (1.0.0)
       danger (> 2.0)
     danger-todoist (1.2.0)
@@ -54,7 +52,6 @@ PLATFORMS
 
 DEPENDENCIES
   danger
-  danger-mention
   danger-todoist
   danger-xcode_summary
 

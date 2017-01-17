@@ -4,6 +4,6 @@ source "https://rubygems.org"
 gem "danger"
 gem "danger-todoist"
 gem "danger-xcode_summary"
-gem "danger-mention"
+# gem "danger-mention"
 
 # gem "rails"
