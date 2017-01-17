@@ -1,9 +1,6 @@
 # Warn when there is a big PR
 warn("Big PR") if git.lines_of_code > 500
 
-todoist.warn_for_todos
-todoist.print_todos_table
-
 xcode_summary.ignored_files = '**/Pods/**'
 xcode_summary.report 'ios/sdk/xcodebuild.json'
 
