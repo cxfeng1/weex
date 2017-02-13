@@ -24,6 +24,8 @@ There is no specific attribute for this component other than the [common attribu
 - support ``position`` related styles
 - support ``opacity``, ``background-color`` etc.
 
+**Notes:** cell itself is a container, its layout info is managed by list, so specifying cell's margin info will not work.
+
 ### Events
 
 **common events**: check out the [common events](../references/common-event.md)
