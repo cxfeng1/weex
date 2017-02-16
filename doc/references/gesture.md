@@ -15,7 +15,7 @@ For now, there are four types of gestures:
 	* `panstart`
 	* `panmove`
 	* `panend`
-* **Horizontal/Vertical Pan**. Mainly used for cell swipe gestures before conflict resolving system is completed. start/move/end state of the gesture will be passed by `state` property.
+* **Horizontal/Vertical Pan** <span class="weex-version">0.10</span> . Mainly used for cell swipe gestures before conflict resolving system is completed. start/move/end state of the gesture will be passed by `state` property.
   * `horizontalpan`
   * `verticalpan`
 * **Swipe**. Swipe is fired when user swipe a touch point on the screen. A serial of motion will only trigger one Swipe gesture.
